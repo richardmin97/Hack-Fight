@@ -1,31 +1,65 @@
-var ref = new Firebase("https://vivid-heat-3174.firebaseio.com");
+Firebase.enableLogging(true);
 
-ref.createUser(emailPassWordObject, function(error, userData) {
-  if (error) {
-    switch (error.code) {
-      case "EMAIL_TAKEN":
-        console.log("The new user account cannot be created because the email is already in use.");
-        break;
-      case "INVALID_EMAIL":
-        console.log("The specified email is not a valid email.");
-        break;
-      default:
-        console.log("Error creating user:", error);
+var ref = new Firebase('https://vivid-heat-3174.firebaseio.com');
+var userRef = ref.child('user');
+
+var emailPasswordObject = {
+  email: "",
+  password: "" 
+};
+
+
+// For index.html button submit
+document.addEventListener('DOMContentLoaded', function() {
+    var thebutton = document.getElementById('signup');
+
+    // onClick's logic below:
+    thebutton.addEventListener('click', function() {
+      var emailInput = document.getElementById("email").value;
+      var pwInput = document.getElementById("password").value;
+
+      var emailPasswordObject = { 
+        email: emailInput,
+        password: pwInput
+      };
+
+      console.log(emailPasswordObject);
+      createUser(emailPasswordObject);
+    });
+});
+
+function createUser(emailPasswordObject)
+{
+  ref.createUser(emailPasswordObject, function(error, userData) {
+    if (error) {
+      switch (error.code) {
+        case "EMAIL_TAKEN":
+          console.log("The new user account cannot be created because the email is already in use.");
+          authWithPassword(emailPasswordObject);
+          break;
+        case "INVALID_EMAIL":
+          console.log("The specified email is not a valid email.");
+          break;
+        default:
+          console.log("Error creating user:", error);
+     }
+    } else {  
+      console.log("Successfully created user account with uid:", userData.uid);
     }
-  } else {
-    console.log("Successfully created user account with uid:", userData.uid);
-  }
-});
+  });
+}
+function authWithPassword(emailPasswordObject)
+{
+  ref.authWithPassword(emailPasswordObject, function(error, authData) {
+    if (error) {
+     console.log("Login Failed!", error);
+    } else {
+      console.log("Authenticated successfully with payload:", authData);
+    }
+  });
+}
 
-ref.authWithPassword(emailPassWordObject, function(error, authData) {
-  if (error) {
-    console.log("Login Failed!", error);
-  } else {
-    console.log("Authenticated successfully with payload:", authData);
-  }
-});
-
-ref.changePassword(emailOldNewPassWordObject, function(error) {
+/*ref.changePassword(emailOldNewPassWordObject, function(error) {
   if (error) {
     switch (error.code) {
       case "INVALID_PASSWORD":
@@ -54,4 +88,4 @@ ref.resetPassword(emailObject, function(error) {
   } else {
     console.log("Password reset email sent successfully!");
   }
-});
+});*/
