@@ -4,35 +4,49 @@ $('body').prepend('<canvas id="canvas"></canvas>');
 Firebase.enableLogging(true);
 var f = new Firebase('https://vivid-heat-3174.firebaseio.com/');
 var fc = f.child('clicks');
+
 fc.transaction(function(curr) {
-  if (isNaN(parseFloat(curr)))
-    return 1; // initialize to 1.
-  else
-    return curr + 1; // increment.
+  // if (isNaN(parseFloat(curr)))
+  //   return 1; // initialize to 1.
+  // else
+  //   return curr + 1; // increment.
+
+
+	$.get("http://en.wikipedia.org/wiki/"+"Solon")
+	.done(function(data, status) {
+		console.log(data);
+		// formatPage(data);
+	})
+	.fail(function(data, status) {
+		console.log("data acquisition failed");
+	});
+
+
+
 }, function() {
     // Once the transaction has completed, update the UI (and watch for updates).
-    fc.on('value', function(s) {
-      document.getElementById('contents').innerHTML = s.val();
-    });
+    // fc.on('value', function(s) {
+    //   document.getElementById('contents').innerHTML = s.val();
+    // });
   });
 
 
-function showInitMenu() {
+// function showInitMenu() {
 
-}
+// }
 
-function showLogin() {
+// function showLogin() {
 
-}
+// }
 
-function displayWarning() {
+// function displayWarning() {
 
-}
+// }
 
-function loadGame() {
+// function loadGame() {
 
-}
+// }
 
-function endGame() {
-	
-}
+// function endGame() {
+
+// }

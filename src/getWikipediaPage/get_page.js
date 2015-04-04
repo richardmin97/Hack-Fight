@@ -1,15 +1,20 @@
+function getRandomPage() {
 
-
-
-
-function getWikipediaArticle(URL) {
-	var xmlhttp = new XMLHttpRequest();
-
-xmlhttp.open("GET",URL,true);
-xmlhttp.send();
 }
 
-function formatWikipediaArticle(URL) {
-	var unformattedArticle = getWikipediaArticle(URL) ;
+function getPage(tag) {
+	return $.get("en.wikipedia.org/wiki/"+tag)
 
+	.done(function(data, status){
+		console.log(data);
+		// formatPage(data);
+	})
+	.fail(function(data, status) {
+		console.log("data acquisition failed");
+	});
+
+}
+
+function formatPage(data) {
+	
 }
