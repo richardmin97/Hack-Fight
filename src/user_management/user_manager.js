@@ -1,17 +1,10 @@
 Firebase.enableLogging(true);
 
 var ref = new Firebase('https://vivid-heat-3174.firebaseio.com');
-var userRef = ref.child('user');
-
-var emailPasswordObject = {
-  email: "",
-  password: "" 
-};
-
 
 // For index.html button submit
 document.addEventListener('DOMContentLoaded', function() {
-    var thebutton = document.getElementById('signup');
+  var thebutton = document.getElementById('signup');
 
     // onClick's logic below:
     thebutton.addEventListener('click', function() {
@@ -26,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
       console.log(emailPasswordObject);
       createUser(emailPasswordObject);
     });
-});
+  });
 
 function createUser(emailPasswordObject)
 {
@@ -34,28 +27,67 @@ function createUser(emailPasswordObject)
     if (error) {
       switch (error.code) {
         case "EMAIL_TAKEN":
-          console.log("The new user account cannot be created because the email is already in use.");
-          authWithPassword(emailPasswordObject);
-          break;
+        console.log("The new user account cannot be created because the email is already in use.");
+        authWithPassword(emailPasswordObject);
+        break;
         case "INVALID_EMAIL":
-          console.log("The specified email is not a valid email.");
-          break;
+        console.log("The specified email is not a valid email.");
+        break;
         default:
-          console.log("Error creating user:", error);
-     }
+        console.log("Error creating user:", error);
+      }
     } else {  
       console.log("Successfully created user account with uid:", userData.uid);
+      authWithPassword(emailPasswordObject);
     }
   });
 }
+
 function authWithPassword(emailPasswordObject)
 {
   ref.authWithPassword(emailPasswordObject, function(error, authData) {
     if (error) {
      console.log("Login Failed!", error);
-    } else {
-      console.log("Authenticated successfully with payload:", authData);
+   } else {
+    console.log("Authenticated successfully with payload:", authData);
+    var html = '<p> you have logged in successfully </p>';
+    document.getElementById("form").innerHTML= html;
+    key = authData.uid;
+    assignPlayerNumber(key);
+  }
+});
+}
+
+//////////////############# P1 AND P2 SHIT ############////////////////
+
+function assignPlayerNumber(key) {
+  var playersRef = ref.child("Lobby");
+  var flag = false;
+
+  ref.once("value", function(snapshot) {
+    console.log("Printing out data object:");
+    var data = snapshot.val();
+    //console.log(data);
+    if (data.Lobby.P1UID == "simplelogin:-1") {
+      console.log("P1 is -1");
+      playersRef.update({
+        "P1UID": key
+      });
+      flag = true;
+      var html = '<p>you are player 1</p>';
+      document.getElementById("whichplayer").innerHTML = html;
     }
+    else if ((data.Lobby.P2UID == "simplelogin:-1") && (flag == false)) {
+      console.log("P2 is -1");
+      playersRef.update({
+        "lobbyFilled": true,
+        "P2UID": key
+      });
+      var html = '<p>you are player 2</p>';
+      document.getElementById("whichplayer").innerHTML = html;
+    }
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
   });
 }
 
