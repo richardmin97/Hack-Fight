@@ -24,7 +24,7 @@
   {
     
 
-      "js": ["src/jquery.js", "browser_action.js"]
+      "js": ["src/jquery.js", "src/bg/background.js"]
       "matches": ["http://*/*", "https://*/*"],
     }
   ]

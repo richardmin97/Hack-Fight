@@ -15,10 +15,9 @@ chrome.extension.onMessage.addListener(
   });
 */
 
-// window.$ = window.jquery = require("jquery");
 
 var UserManager = require("../user_management/user_manager.js");
-
+var WikipediaLoader = require("../getWikipediaPage/get_page.js");
 
 chrome.browserAction.onClicked.addListener(function(activeTab){
   var newURL = chrome.extension.getURL("src/homepage/index.html");

@@ -1,5 +1,7 @@
 
 
+
+
 function getWikipediaArticle(URL) {
 	var xmlhttp = new XMLHttpRequest();
 

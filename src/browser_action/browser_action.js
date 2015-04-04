@@ -1,4 +1,3 @@
-
 // window.$ = window.jquery = require("jquery");
 $('body').prepend('<canvas id="canvas"></canvas>');
 
@@ -17,3 +16,23 @@ fc.transaction(function(curr) {
     });
   });
 
+
+function showInitMenu() {
+
+}
+
+function showLogin() {
+
+}
+
+function displayWarning() {
+
+}
+
+function loadGame() {
+
+}
+
+function endGame() {
+	
+}
