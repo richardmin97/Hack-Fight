@@ -16,6 +16,6 @@ chrome.extension.onMessage.addListener(
 */
 
 chrome.browserAction.onClicked.addListener(function(activeTab){
-  var newURL = chrome.extension.getURL("src/browser_action/browser_action.html");
+  var newURL = chrome.extension.getURL("src/homepage/index.html");
   chrome.tabs.create({ url: newURL });
 });
