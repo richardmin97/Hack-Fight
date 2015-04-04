@@ -1,3 +1,7 @@
+
+// window.$ = window.jquery = require("jquery");
+$('body').prepend('<canvas id="canvas"></canvas>');
+
 Firebase.enableLogging(true);
 var f = new Firebase('https://vivid-heat-3174.firebaseio.com/');
 var fc = f.child('clicks');
@@ -12,3 +16,4 @@ fc.transaction(function(curr) {
       document.getElementById('contents').innerHTML = s.val();
     });
   });
+

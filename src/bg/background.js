@@ -15,9 +15,9 @@ chrome.extension.onMessage.addListener(
   });
 */
 
-window.$ = window.jquery = require("jquery");
+// window.$ = window.jquery = require("jquery");
 
-var UserManager = require("./user_management/user_manager.js");
+var UserManager = require("../user_management/user_manager.js");
 
 
 chrome.browserAction.onClicked.addListener(function(activeTab){

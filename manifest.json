@@ -4,7 +4,6 @@
   "manifest_version": 2,
   "description": "The Wiki Game Chrome Extension",
   "homepage_url": "https://github.com/richardmin97/LAHacks",
-  /* This sample uses firebaseio-demo.com but for production apps using a firebaseio.com Firebase, you won't need that. */
   "content_security_policy": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com; object-src 'self'",
   "icons": {
     "16": "icons/icon16.png",
@@ -20,4 +19,14 @@
     "default_title": "The Wiki Game"
    
   }
+  "permissions": ["http://*.wikipedia.org/*"],
+  "content_scripts": [
+  {
+    
+
+      "js": ["src/jquery.js", "browser_action.js"]
+      "matches": ["http://*/*", "https://*/*"],
+    }
+  ]
 }
+

@@ -1,3 +1,6 @@
+
+// window.$ = window.jquery = require("jquery");
+
 var ref = new Firebase("https://vivid-heat-3174.firebaseio.com");
 
 ref.createUser(emailPassWordObject, function(error, userData) {
