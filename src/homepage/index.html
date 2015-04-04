@@ -1,20 +1,23 @@
 <!DOCTYPE html>
+<script type="text/javascript" src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
+<script type="text/javascript" src="../user_management/user_manager.js"></script> 
+<!-- <script type="text/javascript" src="../homepage/index.js"></script>
+ -->
+
 <html>
 
 <head>
 	<title>The Wiki Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../bootstrap/buttons.css.css">
- 
 </head>
 
 <body>
-	<div class="text-center" style = "color:blue">
-		<h1>The Wiki Game</h1>
-	</div>
-	<p class="text-center">Play against other people and compete to be number one. Are you the next Wiki Game Champion?</p>
-	<button type="button" class="btn btn-info btn-xs" onclick= "signup()">Sign Up</button>
-	
+	<h1>Versus Wiki Game</h1>
+	<p>Play against other people and compete to be number one. Are you the next Wiki Game Champion?</p> <br>
+	<P> username:</P> <input type="text" id="email"><br>
+	<p> password:</p> <input type="text" id="password"><br>
+	<button type="button" class="btn btn-info btn-xs" id="signup">Sign Up</button>
 </body>
 
 </html>
