@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>The Wiki Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+ 
+</head>
+
+<body>
+	<h1>Versus Wiki Game</h1>
+	<h2>Play against other people and compete to be number one. Are you the next Wiki Game Champion?</h2>
+	<button onclick= "signup()">Sign Up</button>
+	<script>
+ 		var fb = new Firebase("https://<your-firebase>.firebaseio.com"); //paste the firebase url
+		function signup(){
+			var email = prompt("Please enter your email.")
+			if (email != null){
+			//save onto the redis
+			}
+		}
+	</script>
+	<button onclick= "login()">Log In</button>
+	<script>
+		var fb = new Firebase("https://<your-firebase>.firebaseio.com");
+		function login(){
+			var email = prompt("Please enter your email.")
+			if (email != null){
+			//save onto the redis
+			}
+		}
+	</script>
+	<button onclick= "guest()">Sign in as Guest</button>
+	<script>
+		var fb = new Firebase("https://<your-firebase>.firebaseio.com");
+		function guest(){
+			
+		}
+	</script>
+</body>
+
+</html>
