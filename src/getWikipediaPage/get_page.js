@@ -1,20 +1,20 @@
-/*
+
 var randomURL;	
-	$.getJSON("http://en.wikipedia.org/w/api.php?action=query&generator=random&grnnamespace=0&prop=extracts&explaintext&exintro=&format=json&callback=?", function (data) {
+	$.getJSON("https://en.wikipedia.org/w/api.php?action=query&generator=random&grnnamespace=0&prop=extracts&explaintext&exintro=&format=json&callback=?", function (data) {
     	$.each(data.query.pages, function(k, v) {
-        	$.getJSON('http://en.wikipedia.org/w/api.php?action=query&prop=info&pageids='+v.pageid+'&inprop=url&format=json&callback=?', function(url) {
+        	$.getJSON('https://en.wikipedia.org/w/api.php?action=query&prop=info&pageids='+v.pageid+'&inprop=url&format=json&callback=?', function(url) {
             	$.each(url.query.pages, function(key, page) {
                 	//console.log(page); // contains the page data
                 	randomURL = page.fullurl; // the url to the page
-                	//console.log(randomURL);
+                	console.log(randomURL);
             	});
         	});
     	});
 	});
-*/
 
-function getRandomPageID() {
-	return $.getJSON("https://community-wikipedia.p.mashape.com/api.php?action=query&generator=random&grnnamespace=0&prop=extracts&explaintext&exintro=&format=json&callback=?");
+
+// function getRandomPageID() {
+// 	return $.getJSON("https://community-wikipedia.p.mashape.com/api.php?action=query&generator=random&grnnamespace=0&prop=extracts&explaintext&exintro=&format=json&callback=?");
     
  //        function (data) 
  //    {
@@ -36,16 +36,16 @@ function getRandomPageID() {
 
 	//console.log("asdlkfj" + randomURL);
 	//return randomURL;
-}
+// }
 
 
-function getRandomPage() {
-    getRandomPageID().done(function(data)
-    {
-        console.log(data);
-        // $.each(data.query.pages)
-    });
-}
+// function getRandomPage() {
+//     getRandomPageID().done(function(data)
+//     {
+//         console.log(data);
+//         // $.each(data.query.pages)
+//     });
+// }
 
 var waiting = true;
 

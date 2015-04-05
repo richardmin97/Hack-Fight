@@ -121,7 +121,7 @@ ref2.on("value", function(snapshot) {
 
 
 function gameTransition() {
-  var html = "<p>we have found you a partner</p>";
+  var html = "<p>A Match has been made!</p>";
   document.getElementById("whichplayer").innerHTML = html;
 
   var count = 5;
@@ -130,18 +130,13 @@ function gameTransition() {
   function timer(){
     if(count >= 0)
     {
-    var countHTML = "game begins in " + count + " seconds";
-    document.getElementById("counter").innerHTML = countHTML;
-    count--;
+      var countHTML = "game begins in " + count + " seconds";
+      document.getElementById("counter").innerHTML = countHTML;
     }
-    if (count == -1) {
-      var html = "<p><b>GAME BEGINS NOWWWWWW!!! GET YOUR GAME ON!!!!</b></p>";
-      document.getElementById("gamestart").innerHTML = html;
-      document.getElementById("counter").innerHTML = "";
+    count--;
 
-      var img = new Image();
-      img.src="http://media.tumblr.com/tumblr_mf3oadRqp81qcecx1.gif";
-      document.getElementById("gamestart").appendChild(img);
+    if (count == -1) {
+      document.getElementById("counter").innerHTML = "";
       clearInterval(run);
 
       document.getElementById("")
