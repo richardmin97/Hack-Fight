@@ -27,7 +27,7 @@ function login(){ // Call this function to start
 function callback(){ // This gets called once the page loads
     //gameOver
     console.log("both done");
-    //gameOver();
+    gameOver();
     console.log(count);
     count = 0;
 }
@@ -70,6 +70,7 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
                 
             }
        		waiting = false;
+            console.log("going to callback");
       		callback();
         }
         else
@@ -116,7 +117,8 @@ function gameOver(){
 }
 
 function displayPage(num){
-    var html;
+    console.log("displaying");
+    var html, html2;
     switch(num){
         case 1:
             html = "<p>Congrats you win!!!</p><br>";
@@ -130,13 +132,15 @@ function displayPage(num){
     }
     //var winHTML = "<p>Congrats you win!</p><br>" + "Number of Clicks: " + ;
     ref.once("value", function(snapshot){
+        console.log("snapshot thing");
         var data = snapshot.val();
-        html += "<p>Player 1 Stats       Player 2 Stats</p><br>"
+        var html2 = "<p>Player 1 Stats       Player 2 Stats</p><br>"
             "<p>Clicks: " + data.P1Clicks + "      " + data.P2Clicks + "</p><br>" +
             "<p>Time: " + data.StartTimeP1 + "       " + data.StartTimeP2 + "</p><br>";
     });
-    
-    document.getElementById("wrapper").innerHTML = html; 
+
+    console.log(" sdfkj " + html2);
+    document.getElementById("wrapper").innerHTML = html + html2; 
     //document.getElementById("wrapper").innerHTML += 
 }
 

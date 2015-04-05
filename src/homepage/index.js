@@ -117,6 +117,7 @@ function gameTransition() {
         if (min == 0) {
             document.getElementById("timer").innerHTML = 'Game over!';
             win = 3;
+            gameOver();
             clearInterval(run);
           }
         min--;
