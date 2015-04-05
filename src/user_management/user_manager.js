@@ -1,7 +1,7 @@
 Firebase.enableLogging(true);
 
 var ref = new Firebase('https://vivid-heat-3174.firebaseio.com');
-
+var playerNum = 1;
 // For index.html button submit
 document.addEventListener('DOMContentLoaded', function() {
   var thebutton = document.getElementById('signup');
@@ -100,6 +100,7 @@ function assignPlayerNumber(key) {
       });
       var html = '<p>you are player 2</p>';
       document.getElementById("whichplayer").innerHTML = html;
+      playerNum = 2;
     }
   }, function (errorObject) {
     console.log("The read failed: " + errorObject.code);
@@ -143,28 +144,29 @@ function gameTransition() {
 
       document.getElementById("")
       document.getElementById("loginform").innerHTML = "";
-      var secs = 0;
-      var mins = 3;
-      var run = setInterval(timer, 500);
+      var sec = 59;
+      var min = 2;
+      var run = setInterval(timer, 1000);
 
       function timer() { 
-      document.getElementById("counter").innerHTML = 'You have' + mins + 'minutes and' + secs +  'seconds remaining.';
-
+      document.getElementById("timer").innerHTML = 'You have ' + min + ' minutes and ' + sec +  ' seconds remaining.';
+      console.log("timer in");
       sec--;
       if (sec == 0) {
         if (min == 0) {
-            document.getElementById("counter").innerHTML = 'The countdown has expired.';
+            document.getElementById("timer").innerHTML = 'The countdown has expired.';
             clearInterval(run);
           }
         min--;
-        sec = 60;
+        sec = 59;
       }
     }
-    
-
       document.getElementById("wrapper").innerHTML += "<iframe src='http://en.wikipedia.org/wiki/Jormungand' width='80%' height='800px'></iframe>";
       login();
     } 
   }
-
 }
+
+//function 
+
+

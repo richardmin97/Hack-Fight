@@ -34,8 +34,6 @@ function getRandomPageID() {
 	// });
 
 
-
-
 	//console.log("asdlkfj" + randomURL);
 	//return randomURL;
 }
@@ -71,7 +69,15 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
         if(request.loaded == "http://en.wikipedia.org/wiki/Sweden")
         {
             console.log("hallo");
-            document.getElementsByTagName('iframe')[0].src = "about:blank";
+            var playerData = ref.child("Lobby");
+
+            //document.getElementsByTagName('iframe')[0].src = "about::blank";
+            document.getElementById("wrapper").innerHTML = "<p>Waiting for other player</p>";
+
+            if(playerNum == 1)
+                console.log("player 1");
+            else
+                console.log("player 2");
        		waiting = false;
       		callback();
         }
