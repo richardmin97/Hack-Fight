@@ -135,16 +135,16 @@ function displayPage(num){
     var html, html2;
     switch(num){
         case 1:
-            html = "<h1>Congrats you win!!!</h1><br>";
+            html = "<h1>You did it!!</h1><br>";
             break;
         case 2:
-            html = "<h1>You lose. you suck</h1><br>";
+            html = "<h1>You did it!!</h1><br><br>";
             break;
         case 3:
             html = "<h1>Tie</h1><br>";
             break;
     }
-    var winHTML = "<p>Congrats you win!</p><br>";
+    var winHTML = "<h1>You did it!!</h1><br>";
     var lob = ref.child("Lobby");
     lob.once("value", function(snapshot){
         console.log("snapshot thing");
