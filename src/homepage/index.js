@@ -132,7 +132,7 @@ function gameTransition() {
         var endURL = snapshot.val();
         var endURL1 = endURL.split("wiki");
         var endURL2 = endURL1[2].split("_");
-        document.getElementById("destination").innerHTML += ("<b>Destination Page:</b> " + endURL1[2]);
+        document.getElementById("destination").innerHTML += ("<b>Destination Page:</b> " + endURL1[2].substring(1));
         }, function (errorObject) {
             console.log("reading the ending url failed: " + errorObject.code);
         })
