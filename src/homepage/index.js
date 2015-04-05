@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //----------------------Functions---------------------------
 
+
 var playerNum = 1;
 var sec = 59;
 var min = 2;
@@ -55,8 +56,8 @@ function assignPlayerNumber(key) {
     }
     else if ((data.Lobby.P2UID == "simplelogin:-1") && (data.Lobby.P1UID != key) && (alreadyFilled == false)) {
       console.log("P2 is -1");
-      var randomEndURLs = ["Graph_Theory", "Cattle", "Pikachu", "Sweden", "Los_Angeles", "Swimming", "Japan", "Harry_Potter", "Hackathon", "Olympic_Games"];
-      var theRandomOne = "https://en.wikipedia.org/wiki/" + randomEndURLs[Math.floor((Math.random() * 10) + 1)];
+      var randomEndURLs = ["Graph_Theory", "Cattle", "Pikachu", "Sweden", "The_Walt_Disney_Company", "Swimming", "Japan", "Harry_Potter", "Penguin", "Olympic_Games"];
+      var theRandomOne = "https://en.wikipedia.org/wiki/" + randomEndURLs[Math.floor((Math.random() * 10))];
 
       playersRef.update({
         "lobbyFilled": true,
