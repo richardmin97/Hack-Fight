@@ -132,10 +132,9 @@ function gameTransition() {
     count--;
 
     if (count == -1) {
-      var html = "<p>GAME BEGINS NOWWWWWW</p>";
+      var html = "<p><b>GAME BEGINS NOWWWWWW!!! GET YOUR GAME ON!!!!</b></p>";
       document.getElementById("gamestart").innerHTML = html;
       document.getElementById("counter").innerHTML = "";
-
 
       var img = new Image();
       img.src="http://media.tumblr.com/tumblr_mf3oadRqp81qcecx1.gif";
