@@ -42,11 +42,11 @@ function getRandomPageID() {
 
 
 function getRandomPage() {
-    getRandomPageID().done(function(data))
+    getRandomPageID().done(function(data)
     {
         console.log(data);
         // $.each(data.query.pages)
-    }
+    });
 }
 
 var waiting = true;
@@ -59,6 +59,7 @@ function login(){ // Call this function to start
 
 function callback(){ // This gets called once the page loads
     console.log(count);
+    count = 0;
 }
 
 var count = 0;
