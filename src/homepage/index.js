@@ -56,10 +56,13 @@ function assignPlayerNumber(key) {
     }
     else if ((data.Lobby.P2UID == "simplelogin:-1") && (data.Lobby.P1UID != key) && (alreadyFilled == false)) {
       console.log("P2 is -1");
+      var randomEndURLs = ["Graph_Theory", "Cattle", "Pikachu", "Sweden", "Los_Angeles", "Swimming", "Japan", "Potato", "Hackathon", "Bread"];
+      var theRandomOne = "https://en.wikipedia.org/wiki/" + randomEndURLs[Math.floor((Math.random() * 10) + 1)];
+
       playersRef.update({
         "lobbyFilled": true,
         "P2UID": key,
-        "EndPage": Player.randomURL
+        "EndPage": theRandomOne
       });
       var html = '<p>You are Player 2</p>';
       Player.UID = key;
