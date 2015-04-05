@@ -12,23 +12,34 @@ var randomTag;
 	});
 
 
-function getRandomPage() {
-	getPage(randomTag);
+
+var waiting = true;
+
+function login(){ // Call this function to start
+    var frame = document.getElementsByTagName('iframe')[0];
+    frame.src = "http://en.wikipedia.org/wiki/Jorm";
+    waiting = true;
 }
 
-function getPage(tag) {
-	return $.get("en.wikipedia.org/wiki/"+tag)
-
-	.done(function(data, status){
-		console.log(data);
-		// formatPage(data);
-	})
-	.fail(function(data, status) {
-		console.log("data acquisition failed");
-	});
-
+function callback(){ // This gets called once the page loads
+    console.log(count);
 }
 
-function formatPage(data) {
-	
-}
+var count = 0;
+
+chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
+    console.log("ran");
+    if(request.loaded && waiting){
+        // If you used a pattern, do extra checks here:
+        if(request.loaded == "http://en.wikipedia.org/wiki/Sweden")
+        {
+            console.log("hallo");
+            document.getElementsByTagName('iframe')[0].src = "about:blank";
+       		waiting = false;
+      		callback();
+        }
+        else
+        	count++;
+        
+    }
+});

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <script type="text/javascript" src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
+<script type="text/javascript" src="../jquery.js"></script>
 <script type="text/javascript" src="../user_management/user_manager.js"></script> 
 <script type="text/javascript" src="../gameplay/gameplay.js"></script>
+<script type="text/javascript" src="../getWikipediaPage/get_page.js"></script>
 <!-- <script type="text/javascript" src="../homepage/index.js"></script>
  -->
 
@@ -14,9 +16,11 @@
 </head>
 
 <body>
+<center>
+	<div id="wrapper" height="90%">
 	<h1>Versus Wiki Game</h1>
 	<p>Play against other people and compete to be number one. Are you the next Wiki Game Champion?</p> <br>
-
+<div id="loginform">
 	<div id="form"><P> username:</P> <input type="text" id="email"><br>
 	<p> password:</p> <input type="text" id="password"><br>
 	<button type="button" class="btn btn-info btn-xs" id="signup">Sign Up or Login</button>
@@ -25,6 +29,9 @@
 	<div id="whichplayer"><p></p></div>
 	<div id="gamestart"></div>
 	<div id="counter"></div>
+</div>
+</div>
+</center>
 </body>
 
 </html>

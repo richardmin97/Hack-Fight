@@ -140,6 +140,10 @@ function gameTransition() {
       img.src="http://media.tumblr.com/tumblr_mf3oadRqp81qcecx1.gif";
       document.getElementById("gamestart").appendChild(img);
       clearInterval(run);
+
+      document.getElementById("loginform").innerHTML = "";
+      document.getElementById("wrapper").innerHTML += "<iframe src='http://en.wikipedia.org/wiki/Jormungand' width='80%' height='800px'></iframe>";
+      login();
     } 
   }
 
