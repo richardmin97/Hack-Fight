@@ -48,6 +48,7 @@ var randomURL;
 // }
 
 var waiting = true;
+var done = false;
 
 function login(){ // Call this function to start
     var frame = document.getElementsByTagName('iframe')[0];
@@ -61,6 +62,8 @@ function callback(){ // This gets called once the page loads
 }
 
 var count = 0;
+var p1done = false;
+var p2done = false;
 
 chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
     console.log("ran");
@@ -73,11 +76,28 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
 
             //document.getElementsByTagName('iframe')[0].src = "about::blank";
             document.getElementById("wrapper").innerHTML = "<p>Waiting for other player</p>";
-
-            if(playerNum == 1)
+            var time = 180 - (min*60 + sec);
+            if(playerNum == 1){
                 console.log("player 1");
-            else
+
+                playerData.update({
+                    "P1CLICKS": count,
+                    "StartTimeP1": time
+                });
+                p1done = true;
+            }
+            else{
                 console.log("player 2");
+                playerData.update({
+                    "P2CLICKS": count,
+                    "StartTimeP2": time
+                });
+                p2done = true;
+            }
+            if(p1done == true && p2done == true)
+                playerData.update({
+                    "Winner": 1
+                });
        		waiting = false;
       		callback();
         }
