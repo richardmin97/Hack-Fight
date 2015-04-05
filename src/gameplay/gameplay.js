@@ -6,10 +6,18 @@ var min = 3;
 
 var gameover = 0;
 
+//var WikipediaLoader = require("../getWikipediaPage/get_page.js");
+
+
+loadGame();
 //countdownTimer(min);
 function loadGame(){
 	//start timer
-	
+	var startPage = getRandomPage();
+	//var url = "http://en.wikipedia.org/wiki/Pluto";
+	var fr = document.getElementById('iframe');
+	console.log("asdf" + startPage);
+	fr.src = startPage;
 	countdownTimer(min);
 }
 
