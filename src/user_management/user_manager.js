@@ -142,40 +142,28 @@ function gameTransition() {
       clearInterval(run);
 
       document.getElementById("loginform").innerHTML = "";
+      var secs = 0;
+      var mins = 3;
+      var run = setInterval(timer, 500);
+
+      function timer() { 
+      document.getElementById("counter").innerHTML = 'You have' + mins + 'minutes and' + secs +  'seconds remaining.';
+
+      sec--;
+      if (sec == 0) {
+        if (min == 0) {
+            document.getElementById("counter").innerHTML = 'The countdown has expired.';
+            clearInterval(run);
+          }
+        min--;
+        sec = 60;
+      }
+    }
+    
+
       document.getElementById("wrapper").innerHTML += "<iframe src='http://en.wikipedia.org/wiki/Jormungand' width='80%' height='800px'></iframe>";
       login();
     } 
   }
 
 }
-
-/*ref.changePassword(emailOldNewPassWordObject, function(error) {
-  if (error) {
-    switch (error.code) {
-      case "INVALID_PASSWORD":
-        console.log("The specified user account password is incorrect.");
-        break;
-      case "INVALID_USER":
-        console.log("The specified user account does not exist.");
-        break;
-      default:
-        console.log("Error changing password:", error);
-    }
-  } else {
-    console.log("User password changed successfully!");
-  }
-});
-
-ref.resetPassword(emailObject, function(error) {
-  if (error) {
-    switch (error.code) {
-      case "INVALID_USER":
-        console.log("The specified user account does not exist.");
-        break;
-      default:
-        console.log("Error resetting password:", error);
-    }
-  } else {
-    console.log("Password reset email sent successfully!");
-  }
-});*/
