@@ -1,6 +1,6 @@
 Firebase.enableLogging(true);
 var ref = new Firebase('https://vivid-heat-3174.firebaseio.com');
-
+var loggedIn = false;
 function createUser(emailPasswordObject)
 {
   document.getElementById("error").innerHTML = "";
@@ -36,6 +36,7 @@ function authWithPassword(emailPasswordObject)
     document.getElementById("form").innerHTML= html;
     key = authData.uid;
     assignPlayerNumber(key);
+    loggedIn = true;
   }
 });
 }

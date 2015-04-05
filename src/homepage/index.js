@@ -80,7 +80,7 @@ var ref2 = new Firebase("https://vivid-heat-3174.firebaseio.com/Lobby/lobbyFille
 ref2.on("value", function(snapshot) {
   var changedPost = snapshot.val();
   // console.log("Changedpost is:" + changedPost);
-  if (changedPost == true) {
+  if (changedPost == true && loggedIn) {
     gameTransition();
   }
 });
