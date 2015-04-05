@@ -103,7 +103,6 @@ function gameTransition() {
       document.getElementById("counter").innerHTML = "";
       clearInterval(run);
 
-      document.getElementById("")
       document.getElementById("loginform").innerHTML = "";
  
       var run = setInterval(timer, 1000);
@@ -120,9 +119,21 @@ function gameTransition() {
         min--;
         sec = 59;
       }
-    }
+    } 
       document.getElementById("wrapper").innerHTML += "<iframe src='about:blank' width='80%' height='800px' id='gameFrame'></iframe>";
       login();
+
+      var EndPagePointer = new Firebase("https://vivid-heat-3174.firebaseio.com/Lobby/EndPage");
+      EndPagePointer.once("value", function(snapshot) {
+        var endURL = snapshot.val();
+        var endURL1 = endURL.split("wiki");
+        var endURL2 = endURL1[2].split("_");
+        document.getElementById("destination").innerHTML += ("<b>Destination Page:</b> " + endURL1[2]);
+        }, function (errorObject) {
+            console.log("reading the ending url failed: " + errorObject.code);
+        })
+
+
     } 
   }
 }
