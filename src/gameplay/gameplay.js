@@ -9,7 +9,7 @@ var gameover = 0;
 //var WikipediaLoader = require("../getWikipediaPage/get_page.js");
 
 
-loadGame();
+//loadGame();
 //countdownTimer(min);
 function loadGame(){
 	//start timer
@@ -21,9 +21,6 @@ function loadGame(){
 	countdownTimer(min);
 }
 
-function destReached(){ //bool
-
-}
 
 function findWinner(){
 	
