@@ -80,6 +80,7 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
 });
 
 function gameOver(){
+    
     ref.once("value", function(snapshot){
         var data = snapshot.val();
         if(data.Lobby.P1Clicks == data.Lobby.P2Clicks){  //same number of clicks so compare times
@@ -121,26 +122,27 @@ function displayPage(num){
     var html, html2;
     switch(num){
         case 1:
-            html = "<p>Congrats you win!!!</p><br>";
+            html = "<h1>Congrats you win!!!</h1><br>";
             break;
         case 2:
-            html = "<p>You lose. you suck</p><br>";
+            html = "<h1>You lose. you suck</h1><br>";
             break;
         case 3:
-            html = "<p>Tie</p><br>";
+            html = "<h1>Tie</h1><br>";
             break;
     }
     //var winHTML = "<p>Congrats you win!</p><br>" + "Number of Clicks: " + ;
-    ref.once("value", function(snapshot){
+    var lob = ref.child("Lobby");
+    lob.once("value", function(snapshot){
         console.log("snapshot thing");
         var data = snapshot.val();
-        var html2 = "<p>Player 1 Stats       Player 2 Stats</p><br>"
-            "<p>Clicks: " + data.P1Clicks + "      " + data.P2Clicks + "</p><br>" +
-            "<p>Time: " + data.StartTimeP1 + "       " + data.StartTimeP2 + "</p><br>";
+        var html2 = "<table><tr><td></td><td><b>Player 1 Stats</b></td><td><b>Player 2 Stats</b></td></tr><tr><td>Clicks: </td><td><p>" + data.P1Clicks +"</p></td><td><p>" + data.P2Clicks + "</p></td></tr><tr><td>Time: </td><td><p>" + data.StartTimeP1 + "</p></td><td><p>" + data.StartTimeP2 + "</p></td><tr></table>";
+
+        console.log(" sdfkj " + html2);
+        document.getElementById("wrapper").innerHTML = html + html2; 
     });
 
-    console.log(" sdfkj " + html2);
-    document.getElementById("wrapper").innerHTML = html + html2; 
+    
     //document.getElementById("wrapper").innerHTML += 
 }
 
