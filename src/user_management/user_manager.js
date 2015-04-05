@@ -21,6 +21,20 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+document.addEventListener('DOMContentLoaded', function() {
+    var resetButton = document.getElementById('reset');
+    // onClick's logic below:
+    resetButton.addEventListener('click', function() {
+
+    var resetRef = new Firebase('https://vivid-heat-3174.firebaseio.com/Lobby');
+    resetRef.update( {
+      P1UID: 'simplelogin:-1',
+      P2UID: 'simplelogin:-1',
+      lobbyFilled: false
+    });
+  });
+});
+
 function createUser(emailPasswordObject)
 {
   ref.createUser(emailPasswordObject, function(error, userData) {
@@ -54,6 +68,7 @@ function authWithPassword(emailPasswordObject)
     document.getElementById("form").innerHTML= html;
     key = authData.uid;
     assignPlayerNumber(key);
+    // gameTransition();
   }
 });
 }
@@ -74,7 +89,7 @@ function assignPlayerNumber(key) {
         "P1UID": key
       });
       flag = true;
-      var html = '<p>you are player 1</p>';
+      var html = '<p>you are player 1</p> <br> <p> attempting to find you a player 2</p>';
       document.getElementById("whichplayer").innerHTML = html;
     }
     else if ((data.Lobby.P2UID == "simplelogin:-1") && (flag == false)) {
@@ -89,6 +104,46 @@ function assignPlayerNumber(key) {
   }, function (errorObject) {
     console.log("The read failed: " + errorObject.code);
   });
+}
+
+//reference to the things we watch
+var ref2 = new Firebase("https://vivid-heat-3174.firebaseio.com/Lobby/lobbyFilled");
+
+//get data on a post that has changed
+ref2.on("value", function(snapshot) {
+  var changedPost = snapshot.val();
+  console.log("Changedpost is:" + changedPost);
+  if (changedPost == true) {
+    gameTransition();
+  }
+});
+
+
+function gameTransition() {
+  var html = "<p>we have found you a partner</p>";
+  document.getElementById("whichplayer").innerHTML = html;
+
+  var count = 5;
+
+  var run = setInterval(timer, 1000);
+  function timer(){
+    var countHTML = "game begins in " + count + " seconds";
+    document.getElementById("counter").innerHTML = countHTML;
+    count--;
+
+    if (count == -1) {
+      var html = "<p>GAME BEGINS NOWWWWWW</p>";
+      document.getElementById("gamestart").innerHTML = html;
+      document.getElementById("counter").innerHTML = "";
+
+
+      var img = new Image();
+      img.src="http://media.tumblr.com/tumblr_mf3oadRqp81qcecx1.gif";
+      document.getElementById("gamestart").appendChild(img);
+      clearInterval(run);
+    } 
+  }
+
 }
 
 /*ref.changePassword(emailOldNewPassWordObject, function(error) {
