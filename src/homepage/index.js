@@ -124,7 +124,7 @@ function gameTransition() {
         sec = 59;
       }
     } 
-      document.getElementById("wrapper").innerHTML += "<iframe src='about:blank' width='80%' height='400px' id='gameFrame'></iframe>";
+      document.getElementById("wrapper").innerHTML += "<iframe src='about:blank' width='80%' height='800px' id='gameFrame'></iframe>";
       login();
 
       var EndPagePointer = new Firebase("https://vivid-heat-3174.firebaseio.com/Lobby/EndPage");
