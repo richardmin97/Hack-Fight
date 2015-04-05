@@ -44,7 +44,7 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
         {
             var playerData = ref.child("Lobby");
             //WRONG
-            document.getElementById("wrapper").innerHTML = "<p>Waiting for other player</p>";
+            document.getElementById("wrapper").innerHTML = "<p>You Win!</p>";
             var time = 180 - (min*60 + sec);
             if(playerNum == 1){
                 console.log("player 1");
