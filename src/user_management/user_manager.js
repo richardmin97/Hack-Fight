@@ -1,42 +1,5 @@
 Firebase.enableLogging(true);
-
 var ref = new Firebase('https://vivid-heat-3174.firebaseio.com');
-var playerNum = 1;
-var sec = 59;
-var min = 2;
-
-// For index.html button submit
-document.addEventListener('DOMContentLoaded', function() {
-  var thebutton = document.getElementById('signup');
-
-    // onClick's logic below:
-    thebutton.addEventListener('click', function() {
-      var emailInput = document.getElementById("email").value;
-      var pwInput = document.getElementById("password").value;
-
-      var emailPasswordObject = { 
-        email: emailInput,
-        password: pwInput
-      };
-
-      console.log(emailPasswordObject);
-      createUser(emailPasswordObject);
-    });
-  });
-
-document.addEventListener('DOMContentLoaded', function() {
-    var resetButton = document.getElementById('reset');
-    // onClick's logic below:
-    resetButton.addEventListener('click', function() {
-
-    var resetRef = new Firebase('https://vivid-heat-3174.firebaseio.com/Lobby');
-    resetRef.update( {
-      P1UID: 'simplelogin:-1',
-      P2UID: 'simplelogin:-1',
-      lobbyFilled: false
-    });
-  });
-});
 
 function createUser(emailPasswordObject)
 {
@@ -44,14 +7,14 @@ function createUser(emailPasswordObject)
     if (error) {
       switch (error.code) {
         case "EMAIL_TAKEN":
-        console.log("The new user account cannot be created because the email is already in use.");
-        authWithPassword(emailPasswordObject);
-        break;
+          console.log("The new user account cannot be created because the email is already in use.");
+          authWithPassword(emailPasswordObject);
+          break;
         case "INVALID_EMAIL":
-        console.log("The specified email is not a valid email.");
-        break;
+          console.log("The specified email is not a valid email.");
+          break;
         default:
-        console.log("Error creating user:", error);
+          console.log("Error creating user:", error);
       }
     } else {  
       console.log("Successfully created user account with uid:", userData.uid);
@@ -77,6 +40,11 @@ function authWithPassword(emailPasswordObject)
 }
 
 //////////////############# P1 AND P2 SHIT ############////////////////
+
+
+var playerNum = 1;
+var sec = 59;
+var min = 2;
 
 function assignPlayerNumber(key) {
   var playersRef = ref.child("Lobby");

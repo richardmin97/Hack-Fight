@@ -81,7 +81,7 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
                 console.log("player 1");
 
                 playerData.update({
-                    "P1CLICKS": count,
+                    "P1Clicks": count,
                     "StartTimeP1": time
                 });
                 p1done = true;
@@ -89,7 +89,7 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
             else{
                 console.log("player 2");
                 playerData.update({
-                    "P2CLICKS": count,
+                    "P2Clicks": count,
                     "StartTimeP2": time
                 });
                 p2done = true;
