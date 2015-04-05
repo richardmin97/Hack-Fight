@@ -1,9 +1,18 @@
 var waiting = true;
 var done = false;
 
+var URIPointer = new Firebase("https://vivid-heat-3174.firebaseio.com/Lobby");
+
 function login(){ // Call this function to start
     var frame = document.getElementsByTagName('iframe')[0];
-    frame.src = "http://en.wikipedia.org/wiki/Jorm";
+    // frame.src = ref.child("Lobby").BeginPage;
+    URIPointer.on("value", function(snapshot) {
+        console.log(URIPointer.BeginPage)
+        frame.src = URIPointer.BeginPage;
+    }, function (errorObject) {
+        console.log("reading the beginning url failed: " + errorObject.code);
+    })
+
     waiting = true;
 }
 

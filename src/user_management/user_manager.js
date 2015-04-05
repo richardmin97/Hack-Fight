@@ -32,7 +32,7 @@ function authWithPassword(emailPasswordObject)
      document.getElementById("error").innerHTML = "Invalid Password.";
    } else {
     console.log("Authenticated successfully with payload:", authData);
-    var html = '<p> you have logged in successfully </p>';
+    var html = '<p> You have logged in successfully as ' + authData.password.email + '</p>';
     document.getElementById("form").innerHTML= html;
     key = authData.uid;
     assignPlayerNumber(key);

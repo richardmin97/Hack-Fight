@@ -54,7 +54,7 @@ function assignPlayerNumber(key) {
       var html = '<p>You are Player 1.</p> <br> <p>Please wait as we find you a Player 2.</p>';
       document.getElementById("whichplayer").innerHTML = html;
     }
-    else if ((data.Lobby.P2UID == "simplelogin:-1") && (flag == false) && (data.Lobby.P1UID != key)) {
+    else if ((data.Lobby.P2UID == "simplelogin:-1") && (data.Lobby.P1UID != key) && (alreadyFilled == false)) {
       console.log("P2 is -1");
       playersRef.update({
         "lobbyFilled": true,
@@ -120,7 +120,7 @@ function gameTransition() {
         sec = 59;
       }
     }
-      document.getElementById("wrapper").innerHTML += "<iframe src='http://en.wikipedia.org/wiki/Jormungand' width='80%' height='800px'></iframe>";
+      document.getElementById("wrapper").innerHTML += "<iframe src='about:blank' width='80%' height='800px' id='gameFrame'></iframe>";
       login();
     } 
   }

@@ -15,7 +15,7 @@ $.getJSON("https://en.wikipedia.org/w/api.php?action=query&generator=random&grnn
 	$.each(data.query.pages, function(k, v) {
     	$.getJSON('https://en.wikipedia.org/w/api.php?action=query&prop=info&pageids='+v.pageid+'&inprop=url&format=json&callback=?', function(url) {
         	$.each(url.query.pages, function(key, page) {
-                	randomURL = page.fullurl; 
+                	Player.randomURL = page.fullurl; 
         	});
     	});
 	});
