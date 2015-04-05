@@ -67,11 +67,12 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
                 playerData.update({
                     "Winner": 1
                 });
+                callback();
                 
             }
        		waiting = false;
             console.log("going to callback");
-      		callback();
+      		
         }
         else
         	count++;
@@ -84,37 +85,44 @@ function gameOver(){
     ref.once("value", function(snapshot){
         var data = snapshot.val();
         if(data.Lobby.P1Clicks == data.Lobby.P2Clicks){  //same number of clicks so compare times
+            console.log("clicks are equal");
             if(data.Lobby.StartTimeP1 < data.Lobby.StartTimeP2)
                 win = 1;
             else
                 win = 2;
         }
         else{
+            console.lob("clicks are not equal");
             if(data.Lobby.P1Clicks < data.Lobby.P2Clicks)
                 win = 1;
             else
                 win = 2;
-        }
-    });
+        } 
+        console.log("win = " + win);
 
-    switch(win){
+        switch(win){
         case 1: //player 1 wins
+            console.log("p1 win");
             if(playerNum == 1)
                 displayPage(1);
             else
                 displayPage(2);
             break;
         case 2: //player 2 wins
+            console.log("p2 win");
             if(playerNum == 2)
                 displayPage(1);
             else
                 displayPage(2);
             break;
         case 3: //time runs out. everyone loses
+            console.log("tie");
             displayPage(3);
             break;
-
-    }
+        }
+    });
+    
+   
 }
 
 function displayPage(num){
@@ -136,7 +144,7 @@ function displayPage(num){
     lob.once("value", function(snapshot){
         console.log("snapshot thing");
         var data = snapshot.val();
-        var html2 = "<table><tr><td></td><td><b>Player 1 Stats</b></td><td><b>Player 2 Stats</b></td></tr><tr><td>Clicks: </td><td><p>" + data.P1Clicks +"</p></td><td><p>" + data.P2Clicks + "</p></td></tr><tr><td>Time: </td><td><p>" + data.StartTimeP1 + "</p></td><td><p>" + data.StartTimeP2 + "</p></td><tr></table>";
+        var html2 = "<table align='center'><tr><td></td><td><b>Player 1 Stats</b></td><td><b>Player 2 Stats</b></td></tr><tr><td>Clicks: </td><td><p>" + data.P1Clicks +"</p></td><td><p>" + data.P2Clicks + "</p></td></tr><tr><td>Time: </td><td><p>" + data.StartTimeP1 + "</p></td><td><p>" + data.StartTimeP2 + "</p></td><tr></table>";
 
         console.log(" sdfkj " + html2);
         document.getElementById("wrapper").innerHTML = html + html2; 
