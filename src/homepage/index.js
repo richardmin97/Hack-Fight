@@ -108,7 +108,7 @@ function gameTransition() {
 
       document.getElementById("loginform").innerHTML = "";
  
-      var run = setInterval(timer, 10);
+      var run = setInterval(timer, 1000);
       function timer() { 
       document.getElementById("timer").innerHTML = 'You have ' + min + ' minutes and ' + sec +  ' seconds remaining.';
       console.log("timer in");
