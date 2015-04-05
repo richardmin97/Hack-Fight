@@ -67,12 +67,12 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
                 playerData.update({
                     "Winner": 1
                 });
-                callback();
+                //callback();
                 
             }
        		waiting = false;
             console.log("going to callback");
-      		
+      		callback();
         }
         else
         	count++;
@@ -83,6 +83,7 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
 function gameOver(){
     
     ref.once("value", function(snapshot){
+        console.log("snapshot*******");
         var data = snapshot.val();
         if(data.Lobby.P1Clicks == data.Lobby.P2Clicks){  //same number of clicks so compare times
             console.log("clicks are equal");
@@ -95,12 +96,17 @@ function gameOver(){
             console.lob("clicks are not equal");
             if(data.Lobby.P1Clicks < data.Lobby.P2Clicks)
                 win = 1;
-            else
+            else{
                 win = 2;
+                console.log("winner is 2");
+            }
         } 
         console.log("win = " + win);
 
-        switch(win){
+
+    
+    });
+    switch(win){
         case 1: //player 1 wins
             console.log("p1 win");
             if(playerNum == 1)
@@ -120,9 +126,7 @@ function gameOver(){
             displayPage(3);
             break;
         }
-    });
-    
-   
+        
 }
 
 function displayPage(num){
