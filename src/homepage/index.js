@@ -56,7 +56,7 @@ function assignPlayerNumber(key) {
     }
     else if ((data.Lobby.P2UID == "simplelogin:-1") && (data.Lobby.P1UID != key) && (alreadyFilled == false)) {
       console.log("P2 is -1");
-      var randomEndURLs = ["Graph_Theory", "Cattle", "Pikachu", "Sweden", "The_Walt_Disney_Company", "Swimming", "Japan", "Harry_Potter", "Penguin", "Olympic_Games"];
+      var randomEndURLs = ["Curry", "Cattle", "Pikachu", "Sweden", "Sun", "Swimming", "Japan", "Mathematics", "Penguin", "Beijing"];
       var theRandomOne = "https://en.wikipedia.org/wiki/" + randomEndURLs[Math.floor((Math.random() * 10))];
 
       playersRef.update({
