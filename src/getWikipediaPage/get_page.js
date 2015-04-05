@@ -1,16 +1,24 @@
 var waiting = true;
 var done = false;
+var endURL = "";
 
-var URIPointer = new Firebase("https://vivid-heat-3174.firebaseio.com/Lobby");
-
+var BeginPagePointer = new Firebase("https://vivid-heat-3174.firebaseio.com/Lobby/BeginPage");
+var EndPagePointer = new Firebase("https://vivid-heat-3174.firebaseio.com/Lobby/EndPage");
 function login(){ // Call this function to start
     var frame = document.getElementsByTagName('iframe')[0];
     // frame.src = ref.child("Lobby").BeginPage;
-    URIPointer.on("value", function(snapshot) {
-        console.log(URIPointer.BeginPage)
-        frame.src = URIPointer.BeginPage;
+    BeginPagePointer.once("value", function(snapshot) {
+        console.log(snapshot.val());
+        frame.src = snapshot.val();
     }, function (errorObject) {
         console.log("reading the beginning url failed: " + errorObject.code);
+    });
+
+    EndPagePointer.once("value", function(snapshot) {
+        console.log(snapshot.val());
+        endURL = snapshot.val();
+    }, function (errorObject) {
+        console.log("reading the ending url failed: " + errorObject.code);
     })
 
     waiting = true;
@@ -29,12 +37,10 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
     console.log("ran");
     if(request.loaded && waiting){
         // If you used a pattern, do extra checks here:
-        if(request.loaded == "http://en.wikipedia.org/wiki/Sweden")
+        if(request.loaded == endURL)
         {
-            console.log("hallo");
             var playerData = ref.child("Lobby");
-
-            //document.getElementsByTagName('iframe')[0].src = "about::blank";
+            //WRONG
             document.getElementById("wrapper").innerHTML = "<p>Waiting for other player</p>";
             var time = 180 - (min*60 + sec);
             if(playerNum == 1){
