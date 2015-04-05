@@ -2,6 +2,9 @@ Firebase.enableLogging(true);
 
 var ref = new Firebase('https://vivid-heat-3174.firebaseio.com');
 var playerNum = 1;
+var sec = 59;
+var min = 2;
+
 // For index.html button submit
 document.addEventListener('DOMContentLoaded', function() {
   var thebutton = document.getElementById('signup');
@@ -146,8 +149,7 @@ function gameTransition() {
 
       document.getElementById("")
       document.getElementById("loginform").innerHTML = "";
-      var sec = 59;
-      var min = 2;
+ 
       var run = setInterval(timer, 1000);
       function timer() { 
       document.getElementById("timer").innerHTML = 'You have ' + min + ' minutes and ' + sec +  ' seconds remaining.';
