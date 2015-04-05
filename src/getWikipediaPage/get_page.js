@@ -1,5 +1,5 @@
 var waiting = true;
-var done = false;
+var win = 0;
 var endURL = "";
 
 var BeginPagePointer = new Firebase("https://vivid-heat-3174.firebaseio.com/Lobby/BeginPage");
@@ -25,6 +25,9 @@ function login(){ // Call this function to start
 }
 
 function callback(){ // This gets called once the page loads
+    //gameOver
+    console.log("both done");
+    //gameOver();
     console.log(count);
     count = 0;
 }
@@ -60,10 +63,12 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
                 });
                 p2done = true;
             }
-            if(p1done == true && p2done == true)
+            if(p1done == true && p2done == true){
                 playerData.update({
                     "Winner": 1
                 });
+                
+            }
        		waiting = false;
       		callback();
         }
@@ -72,3 +77,66 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
         
     }
 });
+
+function gameOver(){
+    ref.once("value", function(snapshot){
+        var data = snapshot.val();
+        if(data.Lobby.P1Clicks == data.Lobby.P2Clicks){  //same number of clicks so compare times
+            if(data.Lobby.StartTimeP1 < data.Lobby.StartTimeP2)
+                win = 1;
+            else
+                win = 2;
+        }
+        else{
+            if(data.Lobby.P1Clicks < data.Lobby.P2Clicks)
+                win = 1;
+            else
+                win = 2;
+        }
+    });
+
+    switch(win){
+        case 1: //player 1 wins
+            if(playerNum == 1)
+                displayPage(1);
+            else
+                displayPage(2);
+            break;
+        case 2: //player 2 wins
+            if(playerNum == 2)
+                displayPage(1);
+            else
+                displayPage(2);
+            break;
+        case 3: //time runs out. everyone loses
+            displayPage(3);
+            break;
+
+    }
+}
+
+function displayPage(num){
+    var html;
+    switch(num){
+        case 1:
+            html = "<p>Congrats you win!!!</p><br>";
+            break;
+        case 2:
+            html = "<p>You lose. you suck</p><br>";
+            break;
+        case 3:
+            html = "<p>Tie</p><br>";
+            break;
+    }
+    //var winHTML = "<p>Congrats you win!</p><br>" + "Number of Clicks: " + ;
+    ref.once("value", function(snapshot){
+        var data = snapshot.val();
+        html += "<p>Player 1 Stats       Player 2 Stats</p><br>"
+            "<p>Clicks: " + data.P1Clicks + "      " + data.P2Clicks + "</p><br>" +
+            "<p>Time: " + data.StartTimeP1 + "       " + data.StartTimeP2 + "</p><br>";
+    });
+    
+    document.getElementById("wrapper").innerHTML = html; 
+    //document.getElementById("wrapper").innerHTML += 
+}
+
