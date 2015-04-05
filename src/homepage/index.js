@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //----------------------Functions---------------------------
 
-
 var playerNum = 1;
 var sec = 59;
 var min = 2;
@@ -81,7 +80,7 @@ var ref2 = new Firebase("https://vivid-heat-3174.firebaseio.com/Lobby/lobbyFille
 ref2.on("value", function(snapshot) {
   var changedPost = snapshot.val();
   // console.log("Changedpost is:" + changedPost);
-  if (changedPost == true) {
+  if (changedPost == true && Player.UID != "simplelogin:-1") {
     gameTransition();
   }
 });
