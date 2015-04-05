@@ -26,7 +26,7 @@ function destReached(){ //bool
 }
 
 function findWinner(){
-
+	
 }
 
 function countdownTimer(minutes){
