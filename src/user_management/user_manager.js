@@ -128,10 +128,12 @@ function gameTransition() {
 
   var run = setInterval(timer, 1000);
   function timer(){
+    if(count >= 0)
+    {
     var countHTML = "game begins in " + count + " seconds";
     document.getElementById("counter").innerHTML = countHTML;
     count--;
-
+    }
     if (count == -1) {
       var html = "<p><b>GAME BEGINS NOWWWWWW!!! GET YOUR GAME ON!!!!</b></p>";
       document.getElementById("gamestart").innerHTML = html;
@@ -147,7 +149,6 @@ function gameTransition() {
       var sec = 59;
       var min = 2;
       var run = setInterval(timer, 1000);
-
       function timer() { 
       document.getElementById("timer").innerHTML = 'You have ' + min + ' minutes and ' + sec +  ' seconds remaining.';
       console.log("timer in");
