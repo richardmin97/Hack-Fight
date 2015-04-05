@@ -17,16 +17,6 @@
   "browser_action": {
     "default_icon": "icons/icon19.png",
     "default_title": "The Wiki Game"
-   
   }
-  "permissions": ["http://*.wikipedia.org/*"],
-  "content_scripts": [
-  {
-    
-
-      "js": ["src/jquery.js", "src/bg/background.js"]
-      "matches": ["http://*/*", "https://*/*"],
-    }
-  ]
 }
 
