@@ -18,7 +18,7 @@ function login(){ // Call this function to start
         console.log(snapshot.val());
         endURL = snapshot.val();
     }, function (errorObject) {
-        //console.log("reading the ending url failed: " + errorObject.code);
+        console.log("reading the ending url failed: " + errorObject.code);
     })
 
     waiting = true;
@@ -93,7 +93,7 @@ function gameOver(){
                 win = 2;
         }
         else{
-            //console.log("clicks are not equal");
+            console.lob("clicks are not equal");
             if(data.Lobby.P1Clicks < data.Lobby.P2Clicks)
                 win = 1;
             else{
@@ -102,7 +102,11 @@ function gameOver(){
             }
         } 
         console.log("win = " + win);
-        switch(win){
+
+
+    
+    });
+    switch(win){
         case 1: //player 1 wins
             console.log("p1 win");
             if(playerNum == 1)
@@ -122,11 +126,6 @@ function gameOver(){
             displayPage(3);
             break;
         }
-
-    
-    });
-    //console.log("win = " + win);
-   
         
 }
 
