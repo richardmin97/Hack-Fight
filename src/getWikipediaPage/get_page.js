@@ -145,15 +145,21 @@ function displayPage(num){
             break;
     }
     //var winHTML = "<p>Congrats you win!</p><br>" + "Number of Clicks: " + ;
-    var lob = ref.child("Lobby");
-    lob.once("value", function(snapshot){
-        console.log("snapshot thing");
-        var data = snapshot.val();
-        var html2 = "<table align='center'><tr><td></td><td><b>Player 1 Stats</b></td><td><b>Player 2 Stats</b></td></tr><tr><td>Clicks: </td><td><p>" + data.P1Clicks +"</p></td><td><p>" + data.P2Clicks + "</p></td></tr><tr><td>Time: </td><td><p>" + data.StartTimeP1 + "</p></td><td><p>" + data.StartTimeP2 + "</p></td><tr></table>";
+    // var lob = ref.child("Lobby");
+    // lob.once("value", function(snapshot){
+    //     console.log("snapshot thing");
+    //     var data = snapshot.val();
+    //     var html2 = "<table align='center'><tr><td></td><td><b>Player 1 Stats</b></td><td><b>Player 2 Stats</b></td></tr><tr><td>Clicks: </td><td><p>" + data.P1Clicks +"</p></td><td><p>" + data.P2Clicks + "</p></td></tr><tr><td>Time: </td><td><p>" + data.StartTimeP1 + "</p></td><td><p>" + data.StartTimeP2 + "</p></td><tr></table>";
 
-        console.log(" sdfkj " + html2);
-        document.getElementById("wrapper").innerHTML = html + html2; 
-    });
+    //     console.log(" sdfkj " + html2);
+    //     document.getElementById("wrapper").innerHTML = html + html2; 
+    // });
+
+    // lob.on("child_changed", function(snapshot) {
+    //     var data = snapshot.val();
+    //     var html2 = "<table align='center'><tr><td></td><td><b>Player 1 Stats</b></td><td><b>Player 2 Stats</b></td></tr><tr><td>Clicks: </td><td><p>" + data.P1Clicks +"</p></td><td><p>" + data.P2Clicks + "</p></td></tr><tr><td>Time: </td><td><p>" + data.StartTimeP1 + "</p></td><td><p>" + data.StartTimeP2 + "</p></td><tr></table>";
+    //     document.getElementById("wrapper").innerHTML = html + html2;
+    // });
 
     
     //document.getElementById("wrapper").innerHTML += 
